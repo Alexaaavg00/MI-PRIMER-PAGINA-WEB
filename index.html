@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido a mi viaje </title>
+</head>
+
+<body>
+    <h1>Calculador combustible</h1> <!-- Kilómetros recorridos --> <label>Kilómetros recorridos:</label> <input
+        type="number" id="kilometrosRecorridos"> <br><br> <!-- Litros consumidos --> <label>Litros consumidos:</label>
+    <input type="number" id="litrosConsumidos"> <br><br> <!-- Selección de gasolina -->
+    <h3>Elige el tipo de gasolina:</h3> <input type="checkbox" id="gasolinaRoja" onclick="seleccionarRoja()"> <label
+        for="gasolinaRoja"> Gasolina Roja — $19.50 por litro </label> <br><br> <input type="checkbox" id="gasolinaVerde"
+        onclick="seleccionarVerde()"> <label for="gasolinaVerde"> Gasolina Verde — $20.50 por litro </label> <br><br>
+    <button onclick="calcularCombustible()">Calcular</button>
+    <h2>Resultados</h2>
+    <div id="resultado"></div>
+    <script>         const CAPACIDAD_TANQUE = 50; const precio_r = 26.50; const precio_v = 24.50;          // Seleccion gasolina roja         function seleccionarRoja() {             if (document.getElementById("gasolinaRoja").checked) {                 document.getElementById("gasolinaVerde").checked = false;             }         }          // Seleccion gasolina verde         function seleccionarVerde() {             if (document.getElementById("gasolinaVerde").checked) {                 document.getElementById("gasolinaRoja").checked = false;             }         }          function calcularCombustible() {              // datos              let kilometrosRecorridos =                 Number(document.getElementById("kilometrosRecorridos").value);              let litrosConsumidos =                 Number(document.getElementById("litrosConsumidos").value);              let precioPorLitro = 0;             let tipoGasolina = "";              // Determinar gasolina y precio             if (document.getElementById("gasolinaRoja").checked) {                 tipoGasolina = "Gasolina Roja";                 precioPorLitro = precio_r;             }             else if (document.getElementById("gasolinaVerde").checked) {                 tipoGasolina = "Gasolina Verde";                 precioPorLitro = precio_v;             }             else {                 document.getElementById("resultado").innerHTML =                     "<p>Selecciona un tipo de gasolina.</p>";                 return;             }              // Calcular el costo total             let costoTotalCombustible =                 litrosConsumidos * precioPorLitro;              // Mostrar los resultados             document.getElementById("resultado").innerHTML =                 "<p>Kilómetros recorridos: " +                 kilometrosRecorridos + " km</p>" +                  "<p>Litros consumidos: " +                 litrosConsumidos + " L</p>" +                  "<p>Tipo de gasolina: " +                 tipoGasolina + "</p>" +                  "<p>Precio por litro: $" +                 precioPorLitro.toFixed(2) + "</p>" +                  "<p>Capacidad del tanque: " +                 CAPACIDAD_TANQUE + " L</p>" +                  "<p><strong>Costo total: $" +                 costoTotalCombustible.toFixed(2) +                 "</strong></p>";         }      </script>
+</body>
+
+</html>
